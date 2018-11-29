@@ -28,7 +28,6 @@ services:
        databases:
          default:
            connector: postgres
-           active: true
            host: database
            port: 5432
            user: postgres
