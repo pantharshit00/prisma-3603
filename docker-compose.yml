@@ -1,0 +1,43 @@
+version: "3"
+services:
+
+ database:
+   image: postgres:9.6
+   restart: always
+   ports:
+     - "5432:5432"
+   networks:
+     - dev
+   environment:
+     POSTGRES_USER: postgres
+     POSTGRES_PASSWORD: prisma
+
+ prisma:
+   image: prismagraphql/prisma:1.21.1
+   restart: always
+   depends_on:
+     - database
+   networks:
+     - dev
+   ports:
+   - "4466:4466"
+   environment:
+     PRISMA_CONFIG: |
+       port: 4466
+       managementApiSecret: my-prisma-api-secret
+       databases:
+         default:
+           connector: postgres
+           active: true
+           host: database
+           port: 5432
+           user: postgres
+           password: prisma
+           migrations: false
+
+networks:
+ dev:
+   driver: bridge
+
+volumes:
+ queue-persistence:
