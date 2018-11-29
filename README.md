@@ -34,7 +34,21 @@ subscription {
   }
 }
 ```
-5. Run this mutation
+5. create a user 
+```graphql
+mutation {
+  createUser(data:{
+    firstName:"Harshit"
+    lastName:"Pant"
+    email:"user@example.com"
+  }){
+    lastName
+    id
+  }
+}
+```
+
+6. Run this mutation
 ```graphql
 mutation {
   updateUser(data: { lastName: "TestLastName" }, where: { email: "user@example.com" }) {
