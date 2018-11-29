@@ -5,5 +5,5 @@ type User {
  email: String! @unique
  createdAt: DateTime!
  updatedAt: DateTime! 
- archivedAt: DateTime @default(value: null)
+ archivedAt: DateTime
 }
